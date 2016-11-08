@@ -8,6 +8,7 @@ package pkgPrestamos;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import pkgConexiones.clConexionSingleton;
+import pkgStudent.clODTStudent;
 
 /**
  *
@@ -17,6 +18,11 @@ public class clLoanSqlController {
 
     public ResultSet getAllLoan() throws SQLException {
         String sql = new String("select * from prestamos ");
+        return clConexionSingleton.getInstance().executeQuery(sql);
+    }
+    
+    public ResultSet getStudentLoan(clODTStudent student) throws SQLException{
+        String sql = new String ("select * from prestamos where codAlumno = " + student.getRegist());
         return clConexionSingleton.getInstance().executeQuery(sql);
     }
 
