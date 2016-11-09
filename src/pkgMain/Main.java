@@ -1,6 +1,7 @@
 package pkgMain;
 
-import pkgStudent.dlgStudent;
+import pkgController.clMainController;
+import pkgVista.dlgStudent;
 
 public class Main {
 
