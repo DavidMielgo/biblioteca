@@ -17,6 +17,7 @@ public class clStudentController implements ActionListener, DocumentListener {
     private dlgStudent studentDialogue;
     private ResultSet resultQuery;
     private clODTStudent student;
+    private clStudentSQLController sqlController;
 
     public clStudentController(frmMain frmM) {
         studentDialogue = new dlgStudent(frmM, true, this);
@@ -35,7 +36,7 @@ public class clStudentController implements ActionListener, DocumentListener {
         student.setSurname1(studentDialogue.getTxtApellido1().getText());
         student.setSurname2(studentDialogue.getTxtApellido2().getText());
         student.setDni(studentDialogue.getTxtDni().getText());
-        student.setRegist(studentDialogue.getTxtRegistro().getText());
+        student.setRegist(Integer.parseInt(studentDialogue.getTxtRegistro().getText()));
         return student;
     }
 
@@ -96,22 +97,23 @@ public class clStudentController implements ActionListener, DocumentListener {
             if (e.getActionCommand() == "btnAltas") {
                 getInfo();
                 studentSqlController.subscribe(student);
+                studentDialogue.reset();
                 studentDialogue.update();
+
             } else if (e.getActionCommand() == "btnBajas") {
                 getInfo();
                 studentSqlController.unsubscribe(student);
+                studentDialogue.reset();
                 studentDialogue.update();
             } else if (e.getActionCommand() == "btnModificar") {
                 getInfo();
                 studentSqlController.modify(student);
+                studentDialogue.reset();
                 studentDialogue.update();
-
             } else if (e.getActionCommand() == "btnSearch") {
                 getInfo();
-                resultQuery = studentSqlController.getStudentSearch(student);
-                resultQuery.next();
-                studentDialogue.updateStudent(resultQuery);
-
+                sqlController.getStudentSearch(student);
+                studentDialogue.update();
             } else if (e.getActionCommand() == "btnReset") {
                 studentDialogue.update();
                 backToWhite();
@@ -125,6 +127,10 @@ public class clStudentController implements ActionListener, DocumentListener {
         } catch (SQLException ex) {
             studentDialogue.showError("Ha habido un error en la consulta");
         }
+    }
+
+    public clStudentSQLController getSqlController() {
+        return sqlController;
     }
 
     public clODTStudent getStudent() {

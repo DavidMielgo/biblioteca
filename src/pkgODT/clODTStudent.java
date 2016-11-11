@@ -1,8 +1,8 @@
 package pkgODT;
 
 public class clODTStudent {
-    private String dni, name, surname1, surname2, regist;
-    
+    private String dni, name, surname1, surname2;
+    private int regist;
     public clODTStudent() {
     }
     
@@ -39,11 +39,11 @@ public class clODTStudent {
         this.surname2 = surname2;
     }
 
-    public String getRegist() {
+    public int getRegist() {
         return regist;
     }
 
-    public void setRegist(String regist) {
+    public void setRegist(int regist) {
         this.regist = regist;
     }
     

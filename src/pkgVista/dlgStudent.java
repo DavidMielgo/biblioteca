@@ -2,50 +2,42 @@ package pkgVista;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import pkgController.clStudentController;
 import pkgSQLController.clStudentSQLController;
-import pkgVistaTabla.clVistaTabla;
+import pkgVistaTabla.clVistaTablaStudent;
 
 public class dlgStudent extends javax.swing.JDialog {
 
     private clStudentSQLController sqlControl;
-    private clVistaTabla vistaTabla;
+    private clVistaTablaStudent clVistaTablaStudent;
 
     public dlgStudent(java.awt.Frame parent, boolean modal, clStudentController StudentController) {
         super(parent, modal);
-        try {
-            initComponents();
-            disableAll();
-            btnAddActionListener(StudentController);
-            txtAddDocumentListener(StudentController);
-            sqlControl = new clStudentSQLController();
-            vistaTabla = new clVistaTabla(sqlControl.getAllStudent());
-            TablaAlumnos.setModel(vistaTabla);
-        } catch (SQLException sQLException) {
-            JOptionPane.showMessageDialog(null, "Ha Habido un Error");
-            btnSalir.addActionListener(StudentController);
-        }
+        initComponents();
+        disableAll();
+        btnAddActionListener(StudentController);
+        txtAddDocumentListener(StudentController);
+        sqlControl = StudentController.getSqlController();
+        clVistaTablaStudent = new clVistaTablaStudent(sqlControl);
+        TablaAlumnos.setModel(clVistaTablaStudent);
     }
 
-        public dlgStudent(javax.swing.JDialog parent, boolean modal, clStudentController StudentController) {
+    public dlgStudent(javax.swing.JDialog parent, boolean modal, clStudentController StudentController) {
         super(parent, modal);
-        try {
-            initComponents();
-            disableAll();
-            btnAddActionListener(StudentController);
-            txtAddDocumentListener(StudentController);
-            sqlControl = new clStudentSQLController();
-            vistaTabla = new clVistaTabla(sqlControl.getAllStudent());
-            TablaAlumnos.setModel(vistaTabla);
-        } catch (SQLException sQLException) {
-            JOptionPane.showMessageDialog(null, "Ha Habido un Error");
-            btnSalir.addActionListener(StudentController);
-        }
+        initComponents();
+        disableAll();
+        btnAddActionListener(StudentController);
+        txtAddDocumentListener(StudentController);
+        sqlControl = StudentController.getSqlController();
+        clVistaTablaStudent = new clVistaTablaStudent(sqlControl);
+        TablaAlumnos.setModel(clVistaTablaStudent);
     }
-    
+
     private void disableAll() {
         btnAltas.setEnabled(false);
         btnBajas.setEnabled(false);
@@ -73,22 +65,24 @@ public class dlgStudent extends javax.swing.JDialog {
     }
 
     public void update() {
-        try {
-            sqlControl = new clStudentSQLController();
-            vistaTabla = new clVistaTabla(sqlControl.getAllStudent());
-            TablaAlumnos.setModel(vistaTabla);
-        } catch (SQLException sQLException) {
-            JOptionPane.showMessageDialog(null, "Ha Habido un Error");
-        }
+        clVistaTablaStudent = new clVistaTablaStudent(sqlControl);
+        TablaAlumnos.setModel(clVistaTablaStudent);
 
     }
 
-    public void updateStudent(ResultSet result) {
-        sqlControl = new clStudentSQLController();
-        vistaTabla = new clVistaTabla(result);
-        TablaAlumnos.setModel(vistaTabla);
+    public void reset(){
+        try {
+            sqlControl.getAllStudent();
+        } catch (SQLException ex) {
+            
+        }
     }
     
+    /* public void updateStudent(ResultSet result) {
+    clVistaTablaStudent = new clVistaTablaStudent(sqlControl);
+    TablaAlumnos.setModel(clVistaTablaStudent);
+    
+    }*/
     public void showError(String parameter) {
         JOptionPane.showMessageDialog(null, parameter);
     }
@@ -413,7 +407,7 @@ public class dlgStudent extends javax.swing.JDialog {
         txtApellido1.setText(String.valueOf(TablaAlumnos.getValueAt(fila, 3)));
         txtApellido2.setText(String.valueOf(TablaAlumnos.getValueAt(fila, 4)));
 
-    }    
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TablaAlumnos;
@@ -440,4 +434,3 @@ public class dlgStudent extends javax.swing.JDialog {
     private javax.swing.JTextField txtRegistro;
     // End of variables declaration//GEN-END:variables
 }
-
