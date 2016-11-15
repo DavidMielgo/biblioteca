@@ -1,37 +1,33 @@
 package pkgSQLController;
 
-
 import pkgODT.clODTStudent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import pkgConexiones.clConexionSingleton;
 
 public class clStudentSQLController {
 
-    private boolean controlAnd = false;
-    clODTStudent student = new clODTStudent();
-    public static final int COLUMN_ALUMNO_REGISTRO = 0;
-    public static final int COLUMN_ALUMNO_DNI = 1;
-    public static final int COLUMN_ALUMNO_NOMBRE = 2;
-    public static final int COLUMN_ALUMNO_APELLIDO1 = 3;
-    public static final int COLUMN_ALUMNO_APELLIDO2 = 4;
     private ResultSet resultQuery;
-    
+
     public void getAllStudent() throws SQLException {
 
         String sql = new String("select * from alumnos ");
-        resultQuery = clConexionSingleton.getInstance().executeQuery(sql); 
+        resultQuery = clConexionSingleton.getInstance().executeQuery(sql);
     }
 
     public void subscribe(clODTStudent student) throws SQLException {
         String sql = "insert into alumnos (dni,nombre,apellido1,apellido2) values ('" + student.getDni() + "','" + student.getName() + "','"
                 + student.getSurname1() + "','" + student.getSurname2() + "');";
+
         clConexionSingleton.getInstance().executeSqlUpdate(sql);
 
     }
 
     public void unsubscribe(clODTStudent student) throws SQLException {
         String sql = "delete from alumnos where registro = " + student.getRegist() + ";";
+        System.out.println(sql);
         clConexionSingleton.getInstance().executeSqlUpdate(sql);
 
     }
@@ -43,10 +39,23 @@ public class clStudentSQLController {
 
     }
 
+    public int NumeroRegistros() {
+        try {
+            int fila = -1;
+            if (resultQuery.last()) {
+                fila = resultQuery.getRow();
+            }
+            return fila;
+        } catch (SQLException ex) {
+            Logger.getLogger(clStudentSQLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+    }
+
     public void getStudentSearch(clODTStudent student) throws SQLException {
         String sql = "select * from alumnos where ";
-        String registro = "" + student.getRegist();
-        if (!registro.equals("")) {
+
+        if (student.getRegist() >= 0) {
             sql = sql + "registro = " + student.getRegist() + " and ";
         }
         if (!student.getDni().equals("")) {
@@ -65,35 +74,19 @@ public class clStudentSQLController {
                 executeQuery(sql.substring(0, sql.length() - 4));
     }
 
-        public clODTStudent getAlumno(int row) throws Exception {
-        clODTStudent alumno;
-        if (resultQuery.absolute(row)) {
-
-            alumno = new clODTStudent();
-
-            int registro = resultQuery.getInt(COLUMN_ALUMNO_REGISTRO + 1);
-            String dni = resultQuery.getString(COLUMN_ALUMNO_DNI + 1);
-            String nombre = resultQuery.getString(COLUMN_ALUMNO_NOMBRE + 1);
-            String apellido1 = resultQuery.getString(COLUMN_ALUMNO_APELLIDO1 + 1);
-            String apellido2 = resultQuery.getString(COLUMN_ALUMNO_APELLIDO2 + 1);
-
-            alumno.setRegist(resultQuery.getInt(COLUMN_ALUMNO_REGISTRO + 1));
-            alumno.setDni(resultQuery.getString(COLUMN_ALUMNO_DNI + 1));
-            alumno.setName(resultQuery.getString(COLUMN_ALUMNO_NOMBRE + 1));
-            alumno.setSurname1(apellido1);
-            alumno.setSurname2(apellido2);
-
-            //esto es por si, y lo comento
-            //alumno = new Alumno(dni, registro, nombre, apellido1, apellido2);
-        }
+    public clODTStudent getAlumno(int row) throws SQLException {
+        clODTStudent student = new clODTStudent();
+        resultQuery.absolute(row);
+        student.setRegist(resultQuery.getInt(1));
+        student.setDni(resultQuery.getString(2));
+        student.setName(resultQuery.getString(3));
+        student.setSurname1(resultQuery.getString(4));
+        student.setSurname2(resultQuery.getString(5));
         return student;
     }
 
     public ResultSet getResultQuery() {
         return resultQuery;
     }
-        
-    
-    
-    
+
 }

@@ -5,6 +5,9 @@
  */
 package pkgVistaTabla;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.AbstractTableModel;
 import pkgSQLController.clStudentSQLController;
 
@@ -12,29 +15,60 @@ import pkgSQLController.clStudentSQLController;
  *
  * @author DavSosMie
  */
-public class clVistaTablaStudent extends AbstractTableModel  {
+public class clVistaTablaStudent extends AbstractTableModel {
 
-    public clVistaTablaStudent(clStudentSQLController sqlControl) {
-        
+    private clStudentSQLController sqlControl;
+    private final String columns[] = {
+        "Registro",
+        "Dni",
+        "Nombre",
+        "Apellido1",
+        "Apellido2"
+    };
+
+    public clVistaTablaStudent(clStudentSQLController auxSqlControl) {
+        sqlControl = auxSqlControl;
     }
 
     @Override
     public int getRowCount() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            return sqlControl.NumeroRegistros();
+            
+            
+        } catch (Exception ex) {
+            Logger.getLogger(clVistaTablaStudent.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
     }
 
     @Override
     public int getColumnCount() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return columns.length;
     }
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    
-    
-    
 
+        try {
+            switch (columnIndex + 1) {
+                case 1:
+                    return sqlControl.getAlumno(rowIndex + 1).getRegist();
+                case 2:
+                    return sqlControl.getAlumno(rowIndex + 1).getDni();
+                case 3:
+                    return sqlControl.getAlumno(rowIndex + 1).getName();
+                case 4:
+                    return sqlControl.getAlumno(rowIndex + 1).getSurname1();
+                case 5:
+                    return sqlControl.getAlumno(rowIndex + 1).getSurname2();
+            }
+            
+
+        } catch (SQLException ex) {
+            Logger.getLogger(clVistaTablaStudent.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                    
+            return "";
+    }
 }

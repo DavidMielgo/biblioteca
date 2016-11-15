@@ -1,6 +1,5 @@
 package pkgVista;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,24 +17,34 @@ public class dlgStudent extends javax.swing.JDialog {
 
     public dlgStudent(java.awt.Frame parent, boolean modal, clStudentController StudentController) {
         super(parent, modal);
-        initComponents();
-        disableAll();
-        btnAddActionListener(StudentController);
-        txtAddDocumentListener(StudentController);
-        sqlControl = StudentController.getSqlController();
-        clVistaTablaStudent = new clVistaTablaStudent(sqlControl);
-        TablaAlumnos.setModel(clVistaTablaStudent);
+        try {
+            initComponents();
+            disableAll();
+            btnAddActionListener(StudentController);
+            txtAddDocumentListener(StudentController);
+            sqlControl = StudentController.getSqlController();
+            sqlControl.getAllStudent();
+            clVistaTablaStudent = new clVistaTablaStudent(sqlControl);
+            TablaAlumnos.setModel(clVistaTablaStudent);
+        } catch (SQLException ex) {
+            Logger.getLogger(dlgStudent.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public dlgStudent(javax.swing.JDialog parent, boolean modal, clStudentController StudentController) {
         super(parent, modal);
-        initComponents();
-        disableAll();
-        btnAddActionListener(StudentController);
-        txtAddDocumentListener(StudentController);
-        sqlControl = StudentController.getSqlController();
-        clVistaTablaStudent = new clVistaTablaStudent(sqlControl);
-        TablaAlumnos.setModel(clVistaTablaStudent);
+        try {
+            initComponents();
+            disableAll();
+            btnAddActionListener(StudentController);
+            txtAddDocumentListener(StudentController);
+            sqlControl = StudentController.getSqlController();
+            sqlControl.getAllStudent();
+            clVistaTablaStudent = new clVistaTablaStudent(sqlControl);
+            TablaAlumnos.setModel(clVistaTablaStudent);
+        } catch (SQLException ex) {
+            Logger.getLogger(dlgStudent.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     private void disableAll() {
@@ -67,7 +76,6 @@ public class dlgStudent extends javax.swing.JDialog {
     public void update() {
         clVistaTablaStudent = new clVistaTablaStudent(sqlControl);
         TablaAlumnos.setModel(clVistaTablaStudent);
-
     }
 
     public void reset(){

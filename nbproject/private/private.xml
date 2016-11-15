@@ -3,10 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/DavSosMie/Documents/NetBeansProjects/BaseDeDatos/src/pkgVista/dlgBooks.java</file>
-            <file>file:/C:/Users/DavSosMie/Documents/NetBeansProjects/BaseDeDatos/src/pkgVistaTabla/clVistaTabla.java</file>
-            <file>file:/C:/Users/DavSosMie/Documents/NetBeansProjects/BaseDeDatos/src/pkgVista/dlgLoan.java</file>
-            <file>file:/C:/Users/DavSosMie/Documents/NetBeansProjects/BaseDeDatos/src/pkgVista/dlgStudent.java</file>
+            <file>file:/C:/Users/DavSosMie/BaseDeDatos/src/pkgVista/dlgStudent.java</file>
+            <file>file:/C:/Users/DavSosMie/BaseDeDatos/src/pkgSQLController/clStudentSQLController.java</file>
+            <file>file:/C:/Users/DavSosMie/BaseDeDatos/src/pkgController/clLoanController.java</file>
+            <file>file:/C:/Users/DavSosMie/BaseDeDatos/src/pkgController/clStudentController.java</file>
+            <file>file:/C:/Users/DavSosMie/BaseDeDatos/src/pkgODT/clODTStudent.java</file>
+            <file>file:/C:/Users/DavSosMie/BaseDeDatos/src/pkgVistaTabla/clVistaTabla.java</file>
+            <file>file:/C:/Users/DavSosMie/BaseDeDatos/src/pkgVistaTabla/clVistaTablaStudent.java</file>
         </group>
     </open-files>
 </project-private>
