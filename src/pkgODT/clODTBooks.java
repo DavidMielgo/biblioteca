@@ -1,16 +1,16 @@
 package pkgODT;
 
 public class clODTBooks {
-    private String codigo, titulo, autor, editorial, asignatura, estado;
-
+    private String titulo, autor, editorial, asignatura, estado;
+    private int codigo;
     public clODTBooks() {
     }
 
-    public String getCodigo() {
+    public int getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(String codigo) {
+    public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
 

@@ -15,6 +15,8 @@ public class clBooksController implements ActionListener, DocumentListener {
 
     private dlgBooks booksDialogue;
     private ResultSet resultQuery;
+    private clODTBooks book;
+    private clBooksSQLController sqlController = new clBooksSQLController();
     
     public clBooksController(frmMain frmM) {
         booksDialogue = new dlgBooks(frmM, true, this);
@@ -25,16 +27,19 @@ public class clBooksController implements ActionListener, DocumentListener {
     }
     
 
-    public clODTBooks getInfo() {
-        clODTBooks book = new clODTBooks();
-        book.setCodigo(booksDialogue.getTxtCodigo().getText());
+    public void getInfo() {
+        book = new clODTBooks();
+        if(!booksDialogue.getTxtCodigo().equals("")){
+            book.setCodigo(Integer.parseInt
+                (booksDialogue.getTxtCodigo().getText()));
+        }else{
+            book.setCodigo(-1);
+        }
         book.setAutor(booksDialogue.getTxtAutor().getText());
         book.setAsignatura(booksDialogue.getTxtAsignatura().getText());
         book.setEditorial(booksDialogue.getTxtEditorial().getText());
         book.setEstado(booksDialogue.getTxtEstado().getText());
         book.setTitulo(booksDialogue.getTxtTitulo().getText());
-
-        return book;
     }
 
     private void backToWhite(){
@@ -49,28 +54,29 @@ public class clBooksController implements ActionListener, DocumentListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         try {
-            clBooksSQLController bookSqlController = new clBooksSQLController();
-            if (e.getActionCommand() == "btnAltas") {
-                clODTBooks student = getInfo();
-                bookSqlController.subscribe(student);
-                booksDialogue.update();
-            } else if (e.getActionCommand() == "btnBajas") {
-                clODTBooks student = getInfo();
-                bookSqlController.unsubscribe(student);
-                booksDialogue.update();
-            } else if (e.getActionCommand() == "btnModificar") {
-                clODTBooks student = getInfo();
-                bookSqlController.modify(student);
-                booksDialogue.update();
             
-            } else if (e.getActionCommand() == "btnBuscar") {
-                clODTBooks student = getInfo();
-                resultQuery = bookSqlController.getBookSearch(student);
-                resultQuery.next();
-                booksDialogue.updateBook(resultQuery);
-            
-            }else if (e.getActionCommand() == "btnReset") {
+            if (e.getActionCommand().equals("btnAltas")) {
+                getInfo();
+                sqlController.subscribe(book);
+                booksDialogue.reset();
                 booksDialogue.update();
+            } else if (e.getActionCommand().equals("btnBajas")) {
+                getInfo();
+                sqlController.unsubscribe(book);
+                booksDialogue.reset();
+                booksDialogue.update();
+            } else if (e.getActionCommand().equals("btnModificar")) {
+                getInfo();
+                sqlController.modify(book);
+                booksDialogue.reset();
+                booksDialogue.update();
+            } else if (e.getActionCommand().equals("btnBuscar")) {
+                getInfo();
+                sqlController.getBookSearch(book);
+                booksDialogue.update();
+            }else if (e.getActionCommand().equals("btnReset")) {
+                booksDialogue.update();
+                sqlController.getAllBooks();
                 backToWhite();
             } else {
                 booksDialogue.dispose();

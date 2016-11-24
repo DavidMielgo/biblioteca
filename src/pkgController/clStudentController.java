@@ -30,7 +30,7 @@ public class clStudentController implements ActionListener, DocumentListener {
         studentDialogue.getBtnSeleccion().setEnabled(true);
     }
 
-    public clODTStudent getInfo() {
+    public void getInfo() {
         student = new clODTStudent();
         if(!studentDialogue.getTxtRegistro().equals("")){
             student.setRegist(Integer.parseInt
@@ -42,8 +42,6 @@ public class clStudentController implements ActionListener, DocumentListener {
         student.setSurname1(studentDialogue.getTxtApellido1().getText());
         student.setSurname2(studentDialogue.getTxtApellido2().getText());
         student.setDni(studentDialogue.getTxtDni().getText());
-
-        return student;
     }
 
     private void backToWhite() {
@@ -99,27 +97,27 @@ public class clStudentController implements ActionListener, DocumentListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         try {
-            if (e.getActionCommand() == "btnAltas") {
+            if (e.getActionCommand().equals("btnAltas")) {
                 getInfo();
                 sqlController.subscribe(student);
                 studentDialogue.reset();
                 studentDialogue.update();
 
-            } else if (e.getActionCommand() == "btnBajas") {
+            } else if (e.getActionCommand().equals("btnBajas")) {
                 getInfo();
                 sqlController.unsubscribe(student);
                 studentDialogue.reset();
                 studentDialogue.update();
-            } else if (e.getActionCommand() == "btnModificar") {
+            } else if (e.getActionCommand().equals("btnModificar")) {
                 getInfo();
                 sqlController.modify(student);
                 studentDialogue.reset();
                 studentDialogue.update();
-            } else if (e.getActionCommand() == "btnSearch") {
+            } else if (e.getActionCommand().equals("btnSearch")) {
                 getInfo();
                 sqlController.getStudentSearch(student);
                 studentDialogue.update();
-            } else if (e.getActionCommand() == "btnReset") {
+            } else if (e.getActionCommand().equals("btnReset")) {
                 studentDialogue.update();
                 sqlController.getAllStudent();
                 backToWhite();

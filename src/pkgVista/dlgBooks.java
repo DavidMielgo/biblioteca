@@ -1,16 +1,13 @@
 package pkgVista;
 
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import javax.swing.table.AbstractTableModel;
 import pkgController.clBooksController;
 import pkgSQLController.clBooksSQLController;
 import pkgVistaTabla.clVistaTabla;
-
 
 public class dlgBooks extends javax.swing.JDialog {
 
@@ -86,10 +83,12 @@ public class dlgBooks extends javax.swing.JDialog {
 
     }
 
-    public void updateBook(ResultSet result) {
-        sqlControl = new clBooksSQLController();
-        vistaTabla = new clVistaTabla(result);
-        TablaBooks.setModel(vistaTabla);
+    public void reset() {
+        try {
+            sqlControl.getAllBooks();
+        } catch (SQLException ex) {
+
+        }
     }
 
     public JTextField getTxtAsignatura() {
