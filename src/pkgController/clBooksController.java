@@ -3,7 +3,6 @@ package pkgController;
 import pkgVista.dlgBooks;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -14,22 +13,17 @@ import pkgVista.frmMain;
 public class clBooksController implements ActionListener, DocumentListener {
 
     private dlgBooks booksDialogue;
-    private ResultSet resultQuery;
     private clODTBooks book;
     private clBooksSQLController sqlController = new clBooksSQLController();
     
     public clBooksController(frmMain frmM) {
         booksDialogue = new dlgBooks(frmM, true, this);
         booksDialogue.setVisible(true);
-    }
-
-    public clBooksController() {
-    }
-    
+    }    
 
     public void getInfo() {
         book = new clODTBooks();
-        if(!booksDialogue.getTxtCodigo().equals("")){
+        if(!booksDialogue.getTxtCodigo().getText().equals("")){
             book.setCodigo(Integer.parseInt
                 (booksDialogue.getTxtCodigo().getText()));
         }else{
@@ -75,8 +69,8 @@ public class clBooksController implements ActionListener, DocumentListener {
                 sqlController.getBookSearch(book);
                 booksDialogue.update();
             }else if (e.getActionCommand().equals("btnReset")) {
+                booksDialogue.reset();
                 booksDialogue.update();
-                sqlController.getAllBooks();
                 backToWhite();
             } else {
                 booksDialogue.dispose();
@@ -132,4 +126,14 @@ public class clBooksController implements ActionListener, DocumentListener {
 
     }
 
+    public clODTBooks getBook() {
+        return book;
+    }
+
+    public clBooksSQLController getSqlController() {
+        return sqlController;
+    }
+
+    
+    
 }

@@ -52,6 +52,7 @@ public class dlgStudent extends javax.swing.JDialog {
         btnBajas.setEnabled(false);
         btnModificaciones.setEnabled(false);
         btnSearch.setEnabled(false);
+        btnSeleccion.setEnabled(false);
 
     }
 
@@ -86,11 +87,6 @@ public class dlgStudent extends javax.swing.JDialog {
         }
     }
     
-    /* public void updateStudent(ResultSet result) {
-    clVistaTablaStudent = new clVistaTablaStudent(sqlControl);
-    TablaAlumnos.setModel(clVistaTablaStudent);
-    
-    }*/
     public void showError(String parameter) {
         JOptionPane.showMessageDialog(null, parameter);
     }

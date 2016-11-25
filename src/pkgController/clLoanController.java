@@ -8,7 +8,6 @@ package pkgController;
 import pkgVista.dlgLoan;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.ResultSet;
 import pkgVista.frmMain;
 import pkgODT.clODTStudent;
 
@@ -20,7 +19,6 @@ import pkgODT.clODTStudent;
 public class clLoanController implements ActionListener{
 
     private dlgLoan loanDialogue;
-    private ResultSet resultQuery;
     private clODTStudent student;
     
     public clLoanController(frmMain frmM) {
@@ -40,7 +38,7 @@ public class clLoanController implements ActionListener{
     }
     
     public void fillFieldStudent(){
-        loanDialogue.getTxtRegistro().setText(student.getRegist());
+        loanDialogue.getTxtRegistro().setText("" + student.getRegist());
         loanDialogue.getTxtDni().setText(student.getDni());
         loanDialogue.getTxtNombre().setText(student.getName());
         loanDialogue.getTxtApellido1().setText(student.getSurname1());

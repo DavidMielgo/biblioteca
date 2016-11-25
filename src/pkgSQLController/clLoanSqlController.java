@@ -16,14 +16,14 @@ import pkgODT.clODTStudent;
  */
 public class clLoanSqlController {
 
-    public ResultSet getAllLoan() throws SQLException {
+    public void getAllLoan() throws SQLException {
         String sql = new String("select * from prestamos ");
-        return clConexionSingleton.getInstance().executeQuery(sql);
+        clConexionSingleton.getInstance().executeQuery(sql);
     }
     
-    public ResultSet getStudentLoan(clODTStudent student) throws SQLException{
+    public void getStudentLoan(clODTStudent student) throws SQLException{
         String sql = new String ("select * from prestamos where codAlumno = " + student.getRegist());
-        return clConexionSingleton.getInstance().executeQuery(sql);
+        clConexionSingleton.getInstance().executeQuery(sql);
     }
 
 }

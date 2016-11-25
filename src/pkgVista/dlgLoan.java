@@ -1,12 +1,9 @@
 package pkgVista;
 
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JTextField;
-import javax.swing.table.AbstractTableModel;
 import pkgController.clLoanController;
 import pkgSQLController.clLoanSqlController;
 import pkgVistaTabla.clVistaTabla;

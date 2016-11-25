@@ -13,12 +13,10 @@ public class clBooksSQLController {
     private ResultSet resultQuery = null;
     private boolean controlAnd;
 
-    public ResultSet getAllBooks() throws SQLException {
+    public void getAllBooks() throws SQLException {
 
         String sql = new String("select * from libros");
         resultQuery = clConexionSingleton.getInstance().executeQuery(sql);
-
-        return resultQuery;
     }
 
     public void subscribe(clODTBooks book) throws SQLException {
@@ -43,6 +41,7 @@ public class clBooksSQLController {
 
     public void getBookSearch(clODTBooks book) throws SQLException {
         String sql = "select * from libros where ";
+        
         if (book.getCodigo() >= 0) {
             sql = sql + "codigo = " + book.getCodigo() + " and ";
         }
@@ -61,6 +60,7 @@ public class clBooksSQLController {
         if (!book.getEstado().equals("")) {
             sql = sql + "estado = '" + book.getEstado() + "' and ";
         }
+        System.out.println(sql.substring(0, sql.length() - 4));
         resultQuery = clConexionSingleton.getInstance().executeQuery(sql.substring(0, sql.length() - 4));
 
     }
@@ -78,7 +78,7 @@ public class clBooksSQLController {
         return 0;
     }
 
-        public clODTBooks getAlumno(int row) throws SQLException {
+        public clODTBooks getBook(int row) throws SQLException {
         clODTBooks books = new clODTBooks();
         resultQuery.absolute(row);
         books.setCodigo(resultQuery.getInt(1));
@@ -86,7 +86,7 @@ public class clBooksSQLController {
         books.setAutor(resultQuery.getString(3));
         books.setEditorial(resultQuery.getString(4));
         books.setAsignatura(resultQuery.getString(5));
-        books.setEstado(resultQuery.getString(5));
+        books.setEstado(resultQuery.getString(6));
         return books;
     }
     

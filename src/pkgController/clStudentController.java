@@ -15,7 +15,6 @@ import pkgVista.dlgLoan;
 public class clStudentController implements ActionListener, DocumentListener {
 
     private dlgStudent studentDialogue;
-    private ResultSet resultQuery;
     private clODTStudent student;
     private clStudentSQLController sqlController = new clStudentSQLController();
 
@@ -32,7 +31,7 @@ public class clStudentController implements ActionListener, DocumentListener {
 
     public void getInfo() {
         student = new clODTStudent();
-        if(!studentDialogue.getTxtRegistro().equals("")){
+        if(!studentDialogue.getTxtRegistro().getText().equals("")){
             student.setRegist(Integer.parseInt
                 (studentDialogue.getTxtRegistro().getText()));
         } else {
