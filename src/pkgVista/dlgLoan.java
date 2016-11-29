@@ -5,33 +5,47 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JTextField;
 import pkgController.clLoanController;
-import pkgSQLController.clLoanSqlController;
-import pkgVistaTabla.clVistaTabla;
-
+import pkgSQLController.clLoanSQLController;
+import pkgVistaTabla.clVistaTablaLoan;
+import pkgVistaTabla.clVistaTablaStudent;
 
 public class dlgLoan extends javax.swing.JDialog {
 
-    private clLoanSqlController sqlLoan;
-    private clVistaTabla vistaTabla;
-    
+    private clLoanSQLController sqlControl;
+    private clVistaTablaLoan vistaTablaLoan;
+
     public dlgLoan(java.awt.Frame parent, boolean modal, clLoanController loanController) {
         super(parent, modal);
         try {
             initComponents();
             addActionListener(loanController);
-            sqlLoan = new clLoanSqlController();
-            vistaTabla = new clVistaTabla(sqlLoan.getAllLoan());
-            tablaLoan.setModel(vistaTabla);
+            sqlControl = loanController.getSqlController();
+            sqlControl.getAllLoan();
+            vistaTablaLoan = new clVistaTablaLoan(sqlControl);
+            tablaLoan.setModel(vistaTablaLoan);
         } catch (SQLException ex) {
             Logger.getLogger(dlgLoan.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    public void addActionListener(clLoanController loanController){
+    public void addActionListener(clLoanController loanController) {
         btnBuscar.addActionListener(loanController);
         btnSalir.addActionListener(loanController);
     }
 
+    public void update() {
+        vistaTablaLoan = new clVistaTablaLoan(sqlControl);
+        tablaLoan.setModel(vistaTablaLoan);
+    }
+
+        public void reset(){
+        try {
+            sqlControl.getAllLoan();
+        } catch (SQLException ex) {
+            
+        }
+    }
+    
     public JTextField getTxtApellido1() {
         return txtApellido1;
     }
@@ -71,9 +85,7 @@ public class dlgLoan extends javax.swing.JDialog {
     public void setTxtRegistro(JTextField txtRegistro) {
         this.txtRegistro = txtRegistro;
     }
-    
-    
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -261,20 +273,20 @@ public class dlgLoan extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-
     private void TablaAlumnosMouseClicked(java.awt.event.MouseEvent evt) {
-    Mostrar_datos(tablaLoan.getSelectedRow());
+        Mostrar_datos(tablaLoan.getSelectedRow());
     }
+
     private void Mostrar_datos(int fila) {
-    
-    txtDni.setText(String.valueOf(tablaLoan.getValueAt(fila, 1)));
-    txtRegistro.setText(String.valueOf(tablaLoan.getValueAt(fila, 0)));
-    txtNombre.setText(String.valueOf(tablaLoan.getValueAt(fila, 2)));
-    txtApellido1.setText(String.valueOf(tablaLoan.getValueAt(fila, 3)));
-    txtApellido2.setText(String.valueOf(tablaLoan.getValueAt(fila, 4)));
-    
-    }  
-    
+
+        txtDni.setText(String.valueOf(tablaLoan.getValueAt(fila, 1)));
+        txtRegistro.setText(String.valueOf(tablaLoan.getValueAt(fila, 0)));
+        txtNombre.setText(String.valueOf(tablaLoan.getValueAt(fila, 2)));
+        txtApellido1.setText(String.valueOf(tablaLoan.getValueAt(fila, 3)));
+        txtApellido2.setText(String.valueOf(tablaLoan.getValueAt(fila, 4)));
+
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnBuscar;
@@ -298,4 +310,3 @@ public class dlgLoan extends javax.swing.JDialog {
     private javax.swing.JTextField txtRegistro;
     // End of variables declaration//GEN-END:variables
 }
-

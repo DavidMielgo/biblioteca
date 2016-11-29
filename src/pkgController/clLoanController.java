@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import pkgVista.frmMain;
 import pkgODT.clODTStudent;
+import pkgSQLController.clLoanSQLController;
 
 
 /**
@@ -20,6 +21,7 @@ public class clLoanController implements ActionListener{
 
     private dlgLoan loanDialogue;
     private clODTStudent student;
+    private clLoanSQLController sqlController = new clLoanSQLController();
     
     public clLoanController(frmMain frmM) {
         loanDialogue = new dlgLoan(frmM, true, this);
@@ -44,4 +46,9 @@ public class clLoanController implements ActionListener{
         loanDialogue.getTxtApellido1().setText(student.getSurname1());
         loanDialogue.getTxtApellido2().setText(student.getSurname2());
     }
+    
+        public clLoanSQLController getSqlController() {
+        return sqlController;
+    }
+    
 }

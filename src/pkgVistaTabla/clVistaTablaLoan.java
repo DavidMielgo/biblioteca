@@ -4,21 +4,24 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.AbstractTableModel;
-import pkgSQLController.clBooksSQLController;
+import pkgODT.clODTLoan;
+import pkgSQLController.clLoanSQLController;
 
 public class clVistaTablaLoan extends AbstractTableModel {
 
-    private clBooksSQLController sqlControl;
+    private clODTLoan loan;
+    private int row = -1;
+    private clLoanSQLController sqlControl;
     private final String columns[] = {
-        "Titulo",
-        "Codigo",
-        "Autor",
-        "Editorial",
-        "Asignatura",
+        "Id",
+        "CodAlumno",
+        "CodLibro",
+        "Fecha Entrega",
+        "Fecha Devolucion",
         "Estado"
     };
 
-    public clVistaTablaLoan(clBooksSQLController auxSqlControl) {
+    public clVistaTablaLoan(clLoanSQLController auxSqlControl) {
         sqlControl = auxSqlControl;
     }
 
@@ -37,27 +40,32 @@ public class clVistaTablaLoan extends AbstractTableModel {
         return columns.length;
     }
 
+
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-
-        try {
+            
+            try {
+                if(rowIndex != row){
+                    loan = sqlControl.getLoan(rowIndex + 1);
+                    row = rowIndex;
+                }
             switch (columnIndex + 1) {
                 case 1:
-                    return sqlControl.getBook(rowIndex + 1).getCodigo();
+                    return loan.getId();
                 case 2:
-                    return sqlControl.getBook(rowIndex + 1).getTitulo();
+                    return loan.getIdStudent();
                 case 3:
-                    return sqlControl.getBook(rowIndex + 1).getAutor();
+                    return loan.getIdBook();
                 case 4:
-                    return sqlControl.getBook(rowIndex + 1).getEditorial();
+                    return loan.getPrestamos();
                 case 5:
-                    return sqlControl.getBook(rowIndex + 1).getAsignatura();
+                    return loan.getDevolucion();
                 case 6:
-                    return sqlControl.getBook(rowIndex + 1).getEstado();
+                    return loan.getEstado();
 
             }
         } catch (SQLException ex) {
-            Logger.getLogger(clVistaTablaLoan.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(clVistaTablaBooks.class.getName()).log(Level.SEVERE, null, ex);
         }
         return "";
     }

@@ -36,6 +36,7 @@ public class dlgStudent extends javax.swing.JDialog {
         try {
             initComponents();
             disableAll();
+            btnSeleccion.setEnabled(true);
             btnAddActionListener(StudentController);
             txtAddDocumentListener(StudentController);
             sqlControl = StudentController.getSqlController();
