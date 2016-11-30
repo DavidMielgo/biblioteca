@@ -1,13 +1,10 @@
 package pkgVista;
 
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JTextField;
 import pkgController.clLoanController;
 import pkgSQLController.clLoanSQLController;
 import pkgVistaTabla.clVistaTablaLoan;
-import pkgVistaTabla.clVistaTablaStudent;
 
 public class dlgLoan extends javax.swing.JDialog {
 
@@ -16,19 +13,24 @@ public class dlgLoan extends javax.swing.JDialog {
 
     public dlgLoan(java.awt.Frame parent, boolean modal, clLoanController loanController) {
         super(parent, modal);
-        try {
             initComponents();
             addActionListener(loanController);
             sqlControl = loanController.getSqlController();
-            sqlControl.getAllLoan();
-            vistaTablaLoan = new clVistaTablaLoan(sqlControl);
-            tablaLoan.setModel(vistaTablaLoan);
-        } catch (SQLException ex) {
-            Logger.getLogger(dlgLoan.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            noEditTextField();
     }
 
+    public void noEditTextField(){
+        txtRegistro.setEditable(false);
+        txtNombre.setEditable(false);
+        txtDni.setEditable(false);
+        txtApellido1.setEditable(false);
+        txtApellido2.setEditable(false);
+    }
+    
     public void addActionListener(clLoanController loanController) {
+        btnAdd.addActionListener(loanController);
+        btnModificar.addActionListener(loanController);
+        btnDelete.addActionListener(loanController);
         btnBuscar.addActionListener(loanController);
         btnSalir.addActionListener(loanController);
     }
@@ -36,14 +38,6 @@ public class dlgLoan extends javax.swing.JDialog {
     public void update() {
         vistaTablaLoan = new clVistaTablaLoan(sqlControl);
         tablaLoan.setModel(vistaTablaLoan);
-    }
-
-        public void reset(){
-        try {
-            sqlControl.getAllLoan();
-        } catch (SQLException ex) {
-            
-        }
     }
     
     public JTextField getTxtApellido1() {
@@ -193,13 +187,13 @@ public class dlgLoan extends javax.swing.JDialog {
 
         tablaLoan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
         jScrollPane1.setViewportView(tablaLoan);

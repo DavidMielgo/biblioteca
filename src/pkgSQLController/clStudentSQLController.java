@@ -27,7 +27,6 @@ public class clStudentSQLController {
 
     public void unsubscribe(clODTStudent student) throws SQLException {
         String sql = "delete from alumnos where registro = " + student.getRegist() + ";";
-        System.out.println(sql);
         clConexionSingleton.getInstance().executeSqlUpdate(sql);
 
     }

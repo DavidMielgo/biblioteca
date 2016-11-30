@@ -3,13 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/DavSosMie/BaseDeDatos/src/pkgVista/dlgStudent.java</file>
+            <file>file:/C:/Users/DavSosMie/BaseDeDatos/src/pkgVista/dlgNewLoan.java</file>
+            <file>file:/C:/Users/DavSosMie/BaseDeDatos/src/pkgODT/clODTBooks.java</file>
             <file>file:/C:/Users/DavSosMie/BaseDeDatos/src/pkgVista/dlgLoan.java</file>
-            <file>file:/C:/Users/DavSosMie/BaseDeDatos/src/pkgSQLController/clStudentSQLController.java</file>
             <file>file:/C:/Users/DavSosMie/BaseDeDatos/src/pkgController/clLoanController.java</file>
-            <file>file:/C:/Users/DavSosMie/BaseDeDatos/src/pkgODT/clODTLoan.java</file>
-            <file>file:/C:/Users/DavSosMie/BaseDeDatos/src/pkgController/clStudentController.java</file>
-            <file>file:/C:/Users/DavSosMie/BaseDeDatos/src/pkgVistaTabla/clVistaTablaLoan.java</file>
             <file>file:/C:/Users/DavSosMie/BaseDeDatos/src/pkgSQLController/clLoanSQLController.java</file>
         </group>
     </open-files>

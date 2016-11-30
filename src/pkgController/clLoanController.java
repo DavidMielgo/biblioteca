@@ -1,22 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pkgController;
 
 import pkgVista.dlgLoan;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import pkgVista.frmMain;
 import pkgODT.clODTStudent;
 import pkgSQLController.clLoanSQLController;
 
 
-/**
- *
- * @author DavSosMie
- */
 public class clLoanController implements ActionListener{
 
     private dlgLoan loanDialogue;
@@ -30,13 +24,22 @@ public class clLoanController implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        try {
         if(e.getActionCommand().equals("btnBuscar")){
-            clStudentController studentController = new clStudentController(loanDialogue);
-            student = studentController.getStudent();
-            fillFieldStudent();
+                clStudentController studentController = new clStudentController(loanDialogue);
+                student = studentController.getStudent();
+                fillFieldStudent();
+                sqlController.getStudentLoan(student);
+                loanDialogue.update();
+        }else if(e.getActionCommand().equals("btn")){
+            
         }else {
             loanDialogue.dispose();
         }
+        } catch (SQLException ex) {
+                Logger.getLogger(clLoanController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        
     }
     
     public void fillFieldStudent(){

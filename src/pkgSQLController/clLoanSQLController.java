@@ -17,16 +17,11 @@ public class clLoanSQLController {
 
     private ResultSet resultQuery;
 
-    public void getAllLoan() throws SQLException {
-        String sql = new String("select * from prestamos ");
-        resultQuery = clConexionSingleton.getInstance().executeQuery(sql);
-    }
-
     public void getStudentLoan(clODTStudent student) throws SQLException {
-        String sql = new String("select * from prestamos where codAlumno = " + student.getRegist());
+        String sql = new String("select * from prestamos where codAlumno = '" + student.getRegist() + "'");
         resultQuery = clConexionSingleton.getInstance().executeQuery(sql);
     }
-
+    
     public int NumeroRegistros() {
         try {
             int fila = -1;
