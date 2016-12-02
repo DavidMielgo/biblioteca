@@ -5,7 +5,10 @@
         <group>
             <file>file:/C:/Users/DavSosMie/BaseDeDatos/src/pkgVista/dlgNewLoan.java</file>
             <file>file:/C:/Users/DavSosMie/BaseDeDatos/src/pkgController/clNewLoanController.java</file>
+            <file>file:/C:/Users/DavSosMie/BaseDeDatos/src/pkgController/clBooksController.java</file>
             <file>file:/C:/Users/DavSosMie/BaseDeDatos/src/pkgVista/dlgStudent.java</file>
+            <file>file:/C:/Users/DavSosMie/BaseDeDatos/src/pkgVista/dlgLoan.java</file>
+            <file>file:/C:/Users/DavSosMie/BaseDeDatos/src/pkgController/clLoanController.java</file>
             <file>file:/C:/Users/DavSosMie/BaseDeDatos/src/pkgController/clStudentController.java</file>
         </group>
     </open-files>
