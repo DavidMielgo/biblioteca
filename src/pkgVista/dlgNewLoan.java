@@ -1,5 +1,6 @@
 package pkgVista;
 
+import javax.swing.JTextField;
 import pkgController.clNewLoanController;
 
 public class dlgNewLoan extends javax.swing.JDialog {
@@ -16,6 +17,7 @@ public class dlgNewLoan extends javax.swing.JDialog {
         txtTitulo.setEditable(false);
         txtAutor.setEditable(false);
         txtAsignatura.setEditable(false);
+        txtEditorial.setEditable(false);
     }
     
     public void btnAddActionListener(clNewLoanController NewLoanController){
@@ -23,6 +25,64 @@ public class dlgNewLoan extends javax.swing.JDialog {
         btnBuscar.addActionListener(NewLoanController);
         btnCancelar.addActionListener(NewLoanController);
     }
+
+    public JTextField getTxtEditorial() {
+        return txtEditorial;
+    }
+
+    public void setTxtEditorial(JTextField txtEditorial) {
+        this.txtEditorial = txtEditorial;
+    }
+    
+    public JTextField getTxtAsignatura() {
+        return txtAsignatura;
+    }
+
+    public void setTxtAsignatura(JTextField txtAsignatura) {
+        this.txtAsignatura = txtAsignatura;
+    }
+
+    public JTextField getTxtAutor() {
+        return txtAutor;
+    }
+
+    public void setTxtAutor(JTextField txtAutor) {
+        this.txtAutor = txtAutor;
+    }
+
+    public JTextField getTxtCodigo() {
+        return txtCodigo;
+    }
+
+    public void setTxtCodigo(JTextField txtCodigo) {
+        this.txtCodigo = txtCodigo;
+    }
+
+    public JTextField getTxtEstado() {
+        return txtEstado;
+    }
+
+    public void setTxtEstado(JTextField txtEstado) {
+        this.txtEstado = txtEstado;
+    }
+
+    public JTextField getTxtFechaDev() {
+        return txtFechaDev;
+    }
+
+    public void setTxtFechaDev(JTextField txtFechaDev) {
+        this.txtFechaDev = txtFechaDev;
+    }
+
+    public JTextField getTxtTitulo() {
+        return txtTitulo;
+    }
+
+    public void setTxtTitulo(JTextField txtTitulo) {
+        this.txtTitulo = txtTitulo;
+    }
+    
+    
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -38,6 +98,8 @@ public class dlgNewLoan extends javax.swing.JDialog {
         txtTitulo = new javax.swing.JTextField();
         txtAutor = new javax.swing.JTextField();
         txtAsignatura = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        txtEditorial = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -57,6 +119,8 @@ public class dlgNewLoan extends javax.swing.JDialog {
 
         jLabel5.setText("Asignatura");
 
+        jLabel8.setText("Editorial");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -66,17 +130,19 @@ public class dlgNewLoan extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(51, 51, 51)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
                             .addComponent(txtTitulo)
                             .addComponent(txtAutor)
-                            .addComponent(txtAsignatura))))
+                            .addComponent(txtAsignatura)
+                            .addComponent(txtEditorial))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -100,7 +166,11 @@ public class dlgNewLoan extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(txtAsignatura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(txtEditorial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         jLabel6.setText("Fecha de Devolucion");
@@ -151,7 +221,7 @@ public class dlgNewLoan extends javax.swing.JDialog {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtFechaDev, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelar)
                     .addComponent(btnAceptar)
@@ -165,7 +235,7 @@ public class dlgNewLoan extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -194,11 +264,13 @@ public class dlgNewLoan extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField txtAsignatura;
     private javax.swing.JTextField txtAutor;
     private javax.swing.JTextField txtCodigo;
+    private javax.swing.JTextField txtEditorial;
     private javax.swing.JTextField txtEstado;
     private javax.swing.JTextField txtFechaDev;
     private javax.swing.JTextField txtTitulo;

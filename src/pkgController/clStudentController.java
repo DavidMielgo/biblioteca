@@ -25,7 +25,6 @@ public class clStudentController implements ActionListener, DocumentListener {
     public clStudentController(dlgLoan dialogueLoan) {
         studentDialogue = new dlgStudent(dialogueLoan, true, this);
         studentDialogue.setVisible(true);
-        studentDialogue.getBtnSeleccion().setEnabled(true);
     }
 
     public void getInfo() {

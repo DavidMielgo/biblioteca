@@ -8,6 +8,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import pkgSQLController.clBooksSQLController;
 import pkgODT.clODTBooks;
+import pkgVista.dlgNewLoan;
 import pkgVista.frmMain;
 
 public class clBooksController implements ActionListener, DocumentListener {
@@ -21,6 +22,11 @@ public class clBooksController implements ActionListener, DocumentListener {
         booksDialogue.setVisible(true);
     }    
 
+    public clBooksController(dlgNewLoan newLoanDialogue){
+        booksDialogue = new dlgBooks(newLoanDialogue, true, this);
+        booksDialogue.setVisible(true);
+    }
+    
     public void getInfo() {
         book = new clODTBooks();
         if(!booksDialogue.getTxtCodigo().getText().equals("")){
@@ -72,7 +78,11 @@ public class clBooksController implements ActionListener, DocumentListener {
                 booksDialogue.reset();
                 booksDialogue.update();
                 backToWhite();
-            } else {
+            }else if(e.getActionCommand().equals("btnSeleccion")){
+                getInfo();
+                System.out.println("Socorro");
+                booksDialogue.dispose();
+            }else {
                 booksDialogue.dispose();
             }
         } catch (SQLException sQLException) {

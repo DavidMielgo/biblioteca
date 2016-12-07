@@ -207,22 +207,24 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace pref="196" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="jLabel6" alignment="1" pref="224" max="32767" attributes="0"/>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="btnAltas" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="btnModificaciones" alignment="0" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="btnBajas" alignment="0" pref="90" max="32767" attributes="0"/>
-                                  <Component id="btnSalir" alignment="0" max="32767" attributes="0"/>
-                              </Group>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="jLabel6" alignment="1" pref="224" max="32767" attributes="0"/>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="btnAltas" alignment="0" max="32767" attributes="0"/>
+                              <Component id="btnModificaciones" alignment="0" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="35" pref="35" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="btnBajas" max="32767" attributes="0"/>
+                              <Component id="btnSeleccion" max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                      <Component id="btnBuscar" min="-2" pref="99" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Component id="btnBuscar" min="-2" pref="99" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="btnSalir" min="-2" pref="90" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
               </Group>
@@ -239,10 +241,13 @@
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btnModificaciones" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnSalir" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnSeleccion" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="btnBuscar" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="btnBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnSalir" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                   <Component id="jLabel6" min="-2" pref="173" max="-2" attributes="0"/>
                   <EmptySpace pref="34" max="32767" attributes="0"/>
@@ -320,6 +325,12 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="buscar"/>
             <Property name="actionCommand" type="java.lang.String" value="btnBuscar"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnSeleccion">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Seleccionar"/>
+            <Property name="actionCommand" type="java.lang.String" value="btnSeleccion"/>
           </Properties>
         </Component>
       </SubComponents>
