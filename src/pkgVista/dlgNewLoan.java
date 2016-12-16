@@ -1,5 +1,6 @@
 package pkgVista;
 
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import pkgController.clNewLoanController;
 
@@ -82,7 +83,10 @@ public class dlgNewLoan extends javax.swing.JDialog {
         this.txtTitulo = txtTitulo;
     }
     
-    
+    public void showError(String error){
+        JOptionPane.showMessageDialog(null, "error");
+    }
+            
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

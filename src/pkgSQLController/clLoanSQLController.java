@@ -7,20 +7,37 @@ package pkgSQLController;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import pkgConexiones.clConexionSingleton;
+import pkgODT.clODTBooks;
 import pkgODT.clODTLoan;
 import pkgODT.clODTStudent;
 
 public class clLoanSQLController {
 
     private ResultSet resultQuery;
-
+    private Date fecha1 = new Date();
+    private SimpleDateFormat fecha = new SimpleDateFormat("yyyy/MM/dd");
+    
     public void getStudentLoan(clODTStudent student) throws SQLException {
         String sql = new String("select * from prestamos where codAlumno = '" + student.getRegist() + "'");
         resultQuery = clConexionSingleton.getInstance().executeQuery(sql);
     }
+    
+    public void actualizarEstadoLibro(String paraEstado, String pararegist) throws SQLException {
+        String sql = "update libros set estado = '" + paraEstado + "'where registro = '" + pararegist + "';";
+        resultQuery = clConexionSingleton.getInstance().executeQuery(sql);
+    }
+    
+   public void darAltaPrestamo(String codigo, clODTBooks book, String estado, String paraFecha) throws SQLException{
+       
+        String sql = "insert into prestamos (codAlumno, codLibros, FechaPrestamo, FechaDevolucion, estado) values ('" + codigo + "','" + book.getCodigo()+ "','"
+                + fecha.format(fecha1) + "','" + paraFecha + "','" + estado + "');";
+        resultQuery = clConexionSingleton.getInstance().executeQuery(sql);
+   }
     
     public int NumeroRegistros() {
         try {

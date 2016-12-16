@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import pkgODT.clODTBooks;
 import pkgVista.frmMain;
 import pkgODT.clODTStudent;
 import pkgSQLController.clLoanSQLController;
@@ -31,7 +32,8 @@ public class clLoanController implements ActionListener {
                 sqlController.getStudentLoan(student);
                 loanDialogue.update();
             } else if (e.getActionCommand().equals("btnAdd")) {
-                clNewLoanController newLoanController = new clNewLoanController(loanDialogue);
+                clNewLoanController newLoanController = new clNewLoanController(loanDialogue, false);
+                
             } else {
                 loanDialogue.dispose();
             }
@@ -53,4 +55,11 @@ public class clLoanController implements ActionListener {
         return sqlController;
     }
 
+    public void actualizarLibro(String estado, int cod) throws SQLException{
+        sqlController.actualizarEstadoLibro(estado, "" + cod);
+    }
+     public void darAltaPrestamo(clODTBooks book, String estado, String fecha) throws SQLException{
+        sqlController.darAltaPrestamo(loanDialogue.getTxtRegistro().getText(), book, estado, fecha);
+    }
+    
 }
